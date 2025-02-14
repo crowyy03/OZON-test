@@ -3,8 +3,8 @@ services:
   postgres:
     image: postgres
     environment:
-      POSTGRES_USER: ilya
-      POSTGRES_PASSWORD: password
+      POSTGRES_USER: ROOT
+      POSTGRES_PASSWORD: 1234
       POSTGRES_DB: urls
     ports:
     
@@ -24,7 +24,7 @@ services:
     environment:
       STORAGE_TYPE: postgres # или in-memory
       SERVER_PORT: 8080
-      TEST_DSN: "postgres://ilya:password@postgres:5432/urls?sslmode=disable"
+      TEST_DSN: "postgres://ROOT:password@postgres:5432/urls?sslmode=disable"
     depends_on:
       - postgres
 volumes:

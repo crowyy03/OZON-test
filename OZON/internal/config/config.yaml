@@ -1,6 +1,6 @@
 storage:
   type: "in-memory"  # или "postgres"
 postgres:
-  dsn: "postgres://ilya:password@localhost:5432/urls?sslmode=disable"
+  dsn: "postgres://ROOT:password@localhost:5432/urls?sslmode=disable"
 server:
   port: 8080
