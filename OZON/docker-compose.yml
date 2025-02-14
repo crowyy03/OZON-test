@@ -1,0 +1,31 @@
+version: '3.9'
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: ilya
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: urls
+    ports:
+    
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  app:
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      STORAGE_TYPE: postgres # или in-memory
+      SERVER_PORT: 8080
+      TEST_DSN: "postgres://ilya:password@postgres:5432/urls?sslmode=disable"
+    depends_on:
+      - postgres
+volumes:
+  pgdata:
