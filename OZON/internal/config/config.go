@@ -1,4 +1,5 @@
 package config
+
 import (
 	"log"
 
@@ -21,7 +22,7 @@ func LoadConfig(path string) (Config, error) {
 	var cfg Config
 
 	viper.SetConfigFile(path)
-	viper.AutomaticEnv() // Читает переменные окружения
+	viper.AutomaticEnv()
 	viper.SetEnvPrefix("")
 
 	if err := viper.ReadInConfig(); err != nil {

@@ -1,4 +1,5 @@
 package storage
+
 import (
 	"database/sql"
 	"log"
@@ -15,6 +16,10 @@ func NewPostgresStorage(dsn string) (*PostgresStorage, error) {
 	if err != nil {
 		return nil, err
 	}
+	if err := db.Ping(); err != nil {
+		return nil, err
+	}
+	log.Println("Успешно подключено к базе данных")
 	return &PostgresStorage{db: db}, nil
 }
 
