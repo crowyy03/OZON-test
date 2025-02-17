@@ -6,9 +6,9 @@
 Перейдите в файл config.yaml.
 ```bash
 storage:
-  type: "in-memory"  # или "postgres"
+  type: "postgres"  # или "in-memory"
 postgres:
-  dsn: "postgres://ROOT:password@localhost:5432/urls?sslmode=disable"
+  dsn: "postgres://root:1234@localhost:5432/urls?sslmode=disable"
 server:
   port: 8080
 ```
@@ -29,9 +29,9 @@ curl http://localhost:8080/expand/закодированная_ссылка
 ## Просмотр базы данных PostgreSQL
 Для этого, во время запущенной программы, в терминале введите 
 ```bash 
-psql -U ROOT -d urls
+docker-compose exec postgres psql -U root -d urls
 ```
 Далее введите:
 ```bash
-SELECT * FROM urls
+SELECT * FROM urls;
 ```
