@@ -35,3 +35,4 @@ docker-compose exec postgres psql -U root -d urls
 ```bash
 SELECT * FROM urls;
 ```
+![alt text](image.png)
