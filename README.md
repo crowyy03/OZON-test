@@ -24,7 +24,9 @@ OZON/
 ## API EndPoints
 
 1. **POST** - ```/shorten```
+
 Тело запроса: ``` "url": "http://example.com"```
+
 Ответ: ```"short_url": "abcde12345"```
 
 *Пример запроса:* 
