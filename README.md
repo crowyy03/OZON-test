@@ -8,6 +8,7 @@
 2. Идентификатор присваивается к оригинальной URL, а после сохраняется в хранилище 
 
 ## Структура проекта
+```
 OZON/
 │── cmd/                  # Главная точка входа в приложение
 │── internal/
@@ -18,6 +19,7 @@ OZON/
 │── migrations/           # Миграции базы данных
 │── config/               # Конфигурационные файлы
 │── README.md             # Документация
+```
 
 ## API EndPoints
 
@@ -63,7 +65,8 @@ OZON/
 ```migrate -path ./migrations -database "postgres://user:password@localhost:5432/dbname?sslmode=disable" down 1```
 ### Альтернативный способ выполнения миграций через psql
 Если golang-migrate недоступен, можно выполнить SQL-скрипты вручную:
-```psql -U root -d urls -f migrations/1_create_table.sql
+```
+psql -U root -d urls -f migrations/1_create_table.sql
 psql -U root -d urls -f migrations/2_add_index.sql
 psql -U root -d urls -f migrations/3_add_created.sql
 psql -U root -d urls -f migrations/4_delete_table.sql
@@ -75,12 +78,14 @@ psql -U root -d urls -f migrations/4_delete_table.sql
 Для начала выборите тип хранения данных (по умолчанию стоит postgres):
 Перейдите в файл internal/config/config.yaml:
 
-```storage:
+```
+storage:
   type: "postgres"  # или "in-memory"
 postgres:
   dsn: "postgres://root:1234@localhost:5432/urls?sslmode=disable"
 server:
-  port: 8080```
+  port: 8080
+```
 
 в строчке type: в скобках укажите нужный тип хранения (postgres или in-memory)
 ```
