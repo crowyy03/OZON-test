@@ -1,4 +1,5 @@
 package api
+
 import (
 	"encoding/json"
 	"log"
@@ -44,6 +45,11 @@ func ShortenURL(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	if req.URL == "" {
+		log.Print("ERROR: url не должен быть пустым")
+		http.Error(w, "URL не должен быть пустым", http.StatusBadRequest)
+		return
+	}
 	shortURL := shortener.GenerateShortURL()
 
 	if err := store.Save(shortURL, req.URL); err != nil {
@@ -61,7 +67,6 @@ func ExpandURL(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	shortURL := vars["shortURL"]
 
-	// Используем store для получения оригинального URL
 	originalURL, err := store.Get(shortURL)
 	if err != nil {
 		log.Printf("ERROR: Не удалось получить оригинальный URL: %v", err)

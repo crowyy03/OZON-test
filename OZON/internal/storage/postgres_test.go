@@ -1,19 +1,22 @@
-package tests
+package storage
+
+// Подключение к PostgreSQL.
+// Сохранение и получение данных.
+
 import (
 	"os"
 	"testing"
 
-	"github.com/crowyy03/OZON/internal/storage"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestPostgresStorage(t *testing.T) {
 	dsn := os.Getenv("TEST_DSN")
 	if dsn == "" {
-		t.Skip("TEST_DSN not set, skipping Postgres tests")
+		t.Skip("TEST_DSN not set, skipping PostgreSQL tests")
 	}
 
-	store, err := storage.NewPostgresStorage(dsn)
+	store, err := NewPostgresStorage(dsn)
 	assert.NoError(t, err)
 
 	shortURL := "test123"

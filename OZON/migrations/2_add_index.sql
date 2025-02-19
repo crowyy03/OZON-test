@@ -1,0 +1,1 @@
+CREATE INDEX IF NOT EXISTS idx_short_url ON first (short_url);
